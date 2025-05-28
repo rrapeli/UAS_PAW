@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pembayaran Lomba MLBB</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+   <div class="payment-container">
+    <div class="payment-card">
+      <div class="card-header">
+        <h1 class="card-title">
+          <i class="fas fa-credit-card"></i>
+          Pembayaran Lomba MLBB
+        </h1>
+        <p class="card-subtitle">Segera lakukan pembayaran untuk mengamankan tiket Turnamen MLBB</p>
+      </div>
+      
+      <div class="card-body">
+        <div class="price-section">
+          <div class="price-label">Total Pembayaran</div>
+          <div class="price-amount">Rp 80.000</div>
+        </div>
+        
+        <div class="payment-details">
+          <div class="detail-row">
+            <span class="detail-label">
+              <i class="fas fa-university icon"></i>
+              Bank
+            </span>
+            <span class="detail-value" onclick="copyText('BRI')" title="Klik untuk menyalin">
+              BRI
+            </span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label">
+              <i class="fas fa-hashtag icon"></i>
+              No. Rekening
+            </span>
+            <span class="detail-value" onclick="copyText('0987654321')" title="Klik untuk menyalin">
+              0987654321
+            </span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label">
+              <i class="fas fa-user icon"></i>
+              Nama Penerima
+            </span>
+            <span class="detail-value" onclick="copyText('Panitia MLBB')" title="Klik untuk menyalin">
+              Panitia MLBB
+            </span>
+          </div>
+        </div>
+        
+        <div class="whatsapp-section">
+          <div class="whatsapp-text">
+            <i class="fas fa-paper-plane"></i>
+            Kirim bukti transfer ke WhatsApp
+          </div>
+          <a href="https://wa.me/6281216638544" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+            <i class="fab fa-whatsapp"></i>
+            0812-1663-8544
+          </a>
+        </div>
+        
+        <a href="../index.html" class="btn-finish">
+          <i class="fas fa-check-circle"></i>
+          Selesai
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-notification" id="copyNotification">
+    <i class="fas fa-check"></i> Berhasil disalin!
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

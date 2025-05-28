@@ -1,0 +1,332 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated background elements */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.payment-container {
+  position: relative;
+  z-index: 10;
+  max-width: 450px;
+  width: 100%;
+}
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 
+    0 25px 50px rgba(0,0,0,0.15),
+    0 0 0 1px rgba(255,255,255,0.2);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.payment-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 35px 70px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(255,255,255,0.3);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+.card-body {
+  padding: 2rem 1.5rem;
+}
+
+.price-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9ff, #e8f0ff);
+  border-radius: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.price-label {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #059669;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(5, 150, 105, 0.1);
+}
+
+.payment-details {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row:hover {
+  background: rgba(102, 126, 234, 0.02);
+  padding-left: 0.5rem;
+  border-radius: 8px;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detail-value {
+  font-weight: 700;
+  color: #1f2937;
+  font-family: 'Monaco', 'Menlo', monospace;
+  background: rgba(102, 126, 234, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.detail-value:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: scale(1.05);
+}
+
+.whatsapp-section {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.whatsapp-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.whatsapp-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-link:hover {
+  color: white;
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.btn-finish {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-finish::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-finish:hover::before {
+  left: 100%;
+}
+
+.btn-finish:hover {
+  color: white;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+}
+
+.btn-finish:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .payment-container {
+    max-width: 95%;
+  }
+  
+  .card-body {
+    padding: 1.5rem 1rem;
+  }
+  
+  .price-amount {
+    font-size: 1.8rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Copy notification */
+.copy-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #059669;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+  transform: translateX(400px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1000;
+  font-weight: 600;
+}
+
+.copy-notification.show {
+  transform: translateX(0);
+}
+
+/* Icon styles */
+.icon {
+  color: #667eea;
+  font-size: 0.9rem;
+}

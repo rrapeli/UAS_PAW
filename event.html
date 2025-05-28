@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acara Festival Kampus 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles for event page */
+    .events-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      margin-bottom: 5rem;
+      padding-top: 8rem;
+    }
+
+    .events-hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .events-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+       background-clip: text;
+     -webkit-text-fill-color: transparent;
+       color: transparent; 
+    }
+
+    .events-hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .events-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .event-card {
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      position: relative;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+      border-color: var(--primary);
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .event-card:hover::before {
+      opacity: 1;
+    }
+
+    .event-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .event-card:hover .event-image {
+      transform: scale(1.05);
+    }
+
+    .event-content {
+      padding: 1.5rem;
+    }
+
+    .event-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .event-description {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .event-details {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .event-details li {
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .event-details li i {
+      color: var(--primary);
+      width: 16px;
+    }
+
+    .event-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .event-btn:hover::before {
+      left: 100%;
+    }
+
+    .event-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Staggered animation for cards */
+    .event-card:nth-child(1) { animation-delay: 0.1s; }
+    .event-card:nth-child(2) { animation-delay: 0.2s; }
+    .event-card:nth-child(3) { animation-delay: 0.3s; }
+    .event-card:nth-child(4) { animation-delay: 0.4s; }
+    .event-card:nth-child(5) { animation-delay: 0.5s; }
+    .event-card:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .events-container {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="gradient-overlay"></div>
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-star"></i>
+        Kampus Festival
+      </a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="event.html" class="nav-link active">Acara</a></li>
+        <li><a href="jadwal.html" class="nav-link">Jadwal</a></li>
+        <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobile-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Events Hero Section -->
+  <section class="events-hero">
+    <div class="events-hero-content">
+      <h1>Acara Festival Kampus 2025</h1>
+      <p>Jelajahi berbagai acara menarik yang telah kami siapkan khusus untuk Anda. Dari seminar inspiratif hingga konser spektakuler!</p>
+    </div>
+  </section>
+
+  <!-- Events Grid -->
+  <div class="events-container">
+    <div class="events-grid">
+      
+      <!-- Seminar & Webinar -->
+      <div class="event-card">
+        <img src="img/seminar.jpg" class="event-image" alt="Seminar & Webinar">
+        <div class="event-content">
+          <h3 class="event-title">Seminar & Webinar</h3>
+          <p class="event-description">Topik teknologi dan karier bersama pembicara nasional yang akan menginspirasi perjalanan karier Anda.</p>
+          <ul class="event-details">
+            <li><i class="fas fa-user"></i>Pembicara: Nadiem Makarim</li>
+            <li><i class="fas fa-calendar"></i>Jadwal: 15 Juni 2025</li>
+            <li><i class="fas fa-clock"></i>Waktu: 09:00 - 12:00 WIB</li>
+          </ul>
+          <a href="daftar/seminar.html" class="event-btn">
+            <i class="fas fa-ticket-alt"></i>
+            Daftar Seminar
+          </a>
+        </div>
+      </div>
+
+      <!-- Job Fair -->
+      <div class="event-card">
+        <img src="img/jobfair.jpg" class="event-image" alt="Job Fair">
+        <div class="event-content">
+          <h3 class="event-title">Career Expo / Job Fair</h3>
+          <p class="event-description">Temui perusahaan impianmu dan raih peluang kerja serta magang langsung di tempat!</p>
+          <ul class="event-details">
+            <li><i class="fas fa-calendar"></i>Jadwal: 16 Juni 2025</li>
+            <li><i class="fas fa-map-marker-alt"></i>Lokasi: Auditorium</li>
+            <li><i class="fas fa-building"></i>Peserta: 30+ perusahaan nasional</li>
+          </ul>
+          <a href="daftar/jobfair.html" class="event-btn">
+            <i class="fas fa-briefcase"></i>
+            Daftar Job Fair
+          </a>
+        </div>
+      </div>
+
+      <!-- Lomba Mobile Legends -->
+      <div class="event-card">
+        <img src="img/lomba.jpeg" class="event-image" alt="Lomba Mobile Legends">
+        <div class="event-content">
+          <h3 class="event-title">Lomba Mobile Legends</h3>
+          <p class="event-description">Buktikan tim kamu yang terbaik dan menangkan hadiah jutaan rupiah dalam turnamen seru ini!</p>
+          <ul class="event-details">
+            <li><i class="fas fa-calendar"></i>Jadwal: 16 Juni 2025</li>
+            <li><i class="fas fa-trophy"></i>Hadiah: Total Rp5.000.000</li>
+            <li><i class="fas fa-gamepad"></i>Aturan: BO 3</li>
+          </ul>
+          <a href="daftar/lomba.html" class="event-btn">
+            <i class="fas fa-gamepad"></i>
+            Daftar Lomba
+          </a>
+        </div>
+      </div>
+
+      <!-- Pentas Seni -->
+      <div class="event-card">
+        <img src="img/pensi.jpg" class="event-image" alt="Pentas Seni">
+        <div class="event-content">
+          <h3 class="event-title">Pentas Seni Mahasiswa</h3>
+          <p class="event-description">Nikmati malam penuh kreativitas dengan penampilan seni dari berbagai fakultas.</p>
+          <ul class="event-details">
+            <li><i class="fas fa-calendar"></i>Jadwal: 17 Juni 2025</li>
+            <li><i class="fas fa-map-marker-alt"></i>Tempat: Aula Utama Kampus</li>
+            <li><i class="fas fa-masks-theater"></i>Penampil: Teater, Tari, Musik</li>
+          </ul>
+          <a href="daftar/pensi.html" class="event-btn">
+            <i class="fas fa-masks-theater"></i>
+            Daftar Pensi
+          </a>
+        </div>
+      </div>
+
+      <!-- Expo / Pameran -->
+      <div class="event-card">
+        <img src="img/expo.jpeg" class="event-image" alt="Expo / Pameran">
+        <div class="event-content">
+          <h3 class="event-title">Expo / Pameran</h3>
+          <p class="event-description">Lihat karya dan inovasi mahasiswa dari seluruh jurusan dalam pameran yang menginspirasi.</p>
+          <ul class="event-details">
+            <li><i class="fas fa-calendar"></i>Jadwal: 17-18 Juni 2025</li>
+            <li><i class="fas fa-map-marker-alt"></i>Lokasi: Lapangan Kampus</li>
+            <li><i class="fas fa-lightbulb"></i>Tema: Inovasi & Kreativitas</li>
+          </ul>
+          <a href="daftar/expo.html" class="event-btn">
+            <i class="fas fa-eye"></i>
+            Daftar Expo
+          </a>
+        </div>
+      </div>
+
+      <!-- Konser Musik -->
+      <div class="event-card">
+        <img src="img/konser.png" class="event-image" alt="Konser Musik">
+        <div class="event-content">
+          <h3 class="event-title">Konser Musik</h3>
+          <p class="event-description">Malam puncak festival dengan penampilan band ternama yang akan memukau seluruh audience.</p>
+          <ul class="event-details">
+            <li><i class="fas fa-calendar"></i>Jadwal: 18 Juni 2025</li>
+            <li><i class="fas fa-music"></i>Line-up: NDX AKA, Shinta Arsinta</li>
+            <li><i class="fas fa-clock"></i>Waktu: 19:00 - 23:00 WIB</li>
+          </ul>
+          <a href="daftar/konser.html" class="event-btn">
+            <i class="fas fa-music"></i>
+            Daftar Konser
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Kontak Resmi</h4>
+        <p><i class="fas fa-envelope"></i> gunawanrafli6@gmail.com</p>
+        <p><i class="fas fa-phone"></i> 0812-1663-8544</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/rrapelii?igsh=MXg5MHRuemN6MzZleg%3D%3D&utm_source=qr" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.facebook.com/share/1AXZ7wVdcY/?mibextid=wwXIfr" class="social-link"><i class="fab fa-facebook"></i></a>
+          <a href="https://youtube.com/@rafli460?si=sL11bTke2Ml3dv2t" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Lokasi</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Mojoarum, Gondang,</p>
+        <p>Tulungagung</p>
+        <a href="https://maps.app.goo.gl/pcwM19DnLDqBYk7P6">Lihat di Google Maps</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Festival Kampus. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+        navbar.style.backdropFilter = 'blur(20px)';
+      } else {
+        navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+      }
+    });
+
+    // Add intersection observer for card animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    // Observe event cards for scroll animations
+    document.querySelectorAll('.event-card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

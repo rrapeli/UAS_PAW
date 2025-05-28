@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar Pensi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS -->
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-card">
+      <div class="header-section">
+        <div class="expo-icon">
+          <i class="fas fa-theater-masks"></i>
+        </div>
+        <h2>Form Pendaftaran Pentas Seni Mahasiswa</h2>
+        <p class="subtitle">Tunjukkan bakat Anda di pentas seni!</p>
+      </div>
+
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="nama" class="form-label">
+            <i class="fas fa-user label-icon"></i>
+            Nama Lengkap
+          </label>
+          <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap Anda" required />
+        </div>
+        <div class="form-group">
+          <label for="nim" class="form-label">
+            <i class="fas fa-id-card label-icon"></i>
+            NIM
+          </label>
+          <input type="text" class="form-control" id="nim" placeholder="Masukkan NIM Anda" required />
+        </div>
+        <div class="form-group">
+          <label for="prodi" class="form-label">
+            <i class="fas fa-graduation-cap label-icon"></i>
+            Program Studi
+          </label>
+          <input type="text" class="form-control" id="prodi" placeholder="Masukkan program studi Anda" required />
+        </div>
+        <div class="form-group">
+          <label for="penampilan" class="form-label">
+            <i class="fas fa-music label-icon"></i>
+            Jenis Penampilan
+          </label>
+          <select class="form-select" id="penampilan" required>
+            <option selected disabled>Pilih salah satu</option>
+            <option value="teater">Teater</option>
+            <option value="tari">Tari</option>
+            <option value="musik">Musik / Band</option>
+            <option value="puisi">Puisi</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="kontak" class="form-label">
+            <i class="fas fa-phone label-icon"></i>
+            No. HP / WhatsApp
+          </label>
+          <input type="tel" class="form-control" id="kontak" placeholder="08xxxxxxxxxx" required />
+        </div>
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane me-2"></i>
+          Kirim Pendaftaran
+        </button>
+      </form>
+
+      <div class="security-note">
+        <i class="fas fa-shield-alt security-icon"></i>
+        <span>Data Anda aman dan terenkripsi dengan teknologi SSL</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Simulasi submit sukses
+      window.location.href = "sukses.html";
+    }
+  </script>
+</body>
+</html>

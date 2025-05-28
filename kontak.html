@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak - Festival Kampus 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --dark: #0f172a;
+      --dark-lighter: #1e293b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.1);
+      --glass: rgba(15, 23, 42, 0.8);
+      --glow: rgba(99, 102, 241, 0.3);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .shape {
+      position: absolute;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 20s infinite linear;
+    }
+
+    .shape:nth-child(1) {
+      width: 100px;
+      height: 100px;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      left: 20%;
+      animation-delay: -5s;
+    }
+
+    .shape:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      left: 70%;
+      animation-delay: -10s;
+    }
+
+    .shape:nth-child(4) {
+      width: 120px;
+      height: 120px;
+      left: 80%;
+      animation-delay: -15s;
+    }
+
+    .shape:nth-child(5) {
+      width: 200px;
+      height: 200px;
+      left: 50%;
+      animation-delay: -7s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+      }
+    }
+
+    /* Gradient overlay animation */
+    .gradient-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+        rgba(99, 102, 241, 0.1) 0%,
+        rgba(6, 182, 212, 0.1) 25%,
+        rgba(245, 158, 11, 0.1) 50%,
+        rgba(99, 102, 241, 0.1) 75%,
+        rgba(6, 182, 212, 0.1) 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 0;
+      backdrop-filter: blur(20px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo i {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary);
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 120px 2rem 4rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Section */
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: textGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      from {
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+      }
+      to {
+        filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.6));
+      }
+    }
+
+    .page-header p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .contact-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .contact-card h3 i {
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 0.5rem;
+    }
+
+    .contact-info {
+      space-y: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: rgba(99, 102, 241, 0.05);
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateX(5px);
+    }
+
+    .contact-item i {
+      color: var(--secondary);
+      font-size: 1.25rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .contact-item span {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .contact-item a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary);
+    }
+
+    /* Form Styles */
+    .form-container {
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 2px solid var(--border);
+      border-radius: 0.75rem;
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .form-control::placeholder {
+      color: var(--text-muted);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+    }
+
+    /* Social Links */
+    .social-section {
+      text-align: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      animation: fadeInUp 1s ease-out 0.7s both;
+    }
+
+    .social-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+    }
+
+    .social-link:hover::before {
+      opacity: 1;
+    }
+
+    .social-link i {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      color: white;
+    }
+
+    /* Map Section */
+    .map-section {
+      margin-top: 4rem;
+      animation: fadeInUp 1s ease-out 0.9s both;
+    }
+
+    .map-container {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .map-container h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, var(--dark-lighter), var(--dark));
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .map-placeholder i {
+      font-size: 3rem;
+      color: var(--text-muted);
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      background: rgba(6, 182, 212, 0.1);
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .map-link:hover {
+      background: var(--secondary);
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .mobile-toggle {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid var(--border);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .main-content {
+        padding: 100px 1rem 2rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-card {
+        padding: 2rem;
+      }
+
+      .social-links {
+        gap: 1rem;
+      }
+
+      .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="gradient-overlay"></div>
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-star"></i>
+        Kampus Festival
+      </a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="event.html" class="nav-link">Acara</a></li>
+        <li><a href="jadwal.html" class="nav-link">Jadwal</a></li>
+        <li><a href="kontak.html" class="nav-link active">Kontak</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobile-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1>Hubungi Kami</h1>
+        <p>Siap untuk bergabung atau punya pertanyaan? Tim kami siap membantu Anda 24/7. Mari wujudkan festival terbaik bersama!</p>
+      </div>
+
+      <!-- Contact Grid -->
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-card">
+          <h3>
+            <i class="fas fa-address-book"></i>
+            Kontak Resmi
+          </h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span><a href="mailto:gunawanrafli6@gmail.com">gunawanrafli6@gmail.com</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <span><a href="https://wa.me/6281216638544">0812-1663-8544</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span> 0812-1663-8544</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Mojoarum, Tulungagung</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <span>Senin - Jumat: 08:00 - 17:00 WIB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-card form-container">
+          <h3>
+            <i class="fas fa-paper-plane"></i>
+            Kirim Pesan
+          </h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Nama Lengkap</label>
+              <input type="text" id="name" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="nama@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subjek</label>
+              <input type="text" id="subject" class="form-control" placeholder="Subjek pesan Anda" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Pesan</label>
+              <textarea id="message" class="form-control" placeholder="Tulis pesan Anda di sini..." required></textarea>
+            </div>
+            <button type="submit" class="btn">
+              <i class="fas fa-send"></i>
+              Kirim Pesan
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Social Media Section -->
+      <div class="social-section">
+        <h3>Ikuti Media Sosial Kami</h3>
+        <div class="social-links">
+          <a href="https://www.instagram.com/rrapelii?igsh=MXg5MHRuemN6MzZleg%3D%3D&utm_source=qr" class="social-link" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1AXZ7wVdcY/?mibextid=wwXIfr" class="social-link" title="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#" class="social-link" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/@rafli460?si=sL11bTke2Ml3dv2t" class="social-link" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.tiktok.com/@pemudakalah?_t=ZS-8wk2xFIDB57&_r=1" class="social-link" title="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="#" class="social-link" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Map Section -->
+      <div class="map-section">
+        <div class="map-container">
+          <h3>Lokasi Festival</h3>
+          <div class="map-placeholder">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Mojoarum, Gondang, Tulungagung<br>
+            Jawa Timur, Indonesia 66263
+          </p>
+          <a href="https://maps.app.goo.gl/pcwM19DnLDqBYk7P6" class="map-link" target="">
+            <i class="fas fa-external-link-alt"></i>
+            Buka di Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+        navbar.style.backdropFilter = 'blur(20px)';
+      } else {
+        navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+      }
+    });
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show success message
+      const btn = this.querySelector('.btn');
+      const originalText = btn.innerHTML;
+      
+      btn.innerHTML = '<i class="fas fa-check"></i> Pesan Terkirim!';
+      btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+        this.reset();
+      }, 3000);
+    });
+
+    // Add entrance animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.contact-card, .social-section, .map-section').forEach(item => {
+      observer.observe(item);
+    });
+
+    // Enhanced form interactions
+    const formControls = document.querySelectorAll('.form-control');
+    formControls.forEach(control => {
+      control.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'translateX(5px)';
+      });
+      
+      control.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'translateX(0)';
+      });
+    });
+  </script>
+</body>
+</html>

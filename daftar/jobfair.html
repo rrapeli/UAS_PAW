@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar Job Fair</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-card">
+      <div class="header-section">
+        <div class="expo-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <h2>Pendaftaran Career Expo / Job Fair</h2>
+        <p class="subtitle">Bergabunglah dengan pameran karir dan temukan peluang terbaik</p>
+      </div>
+
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-user label-icon"></i>
+            Nama Lengkap
+          </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nama" 
+            name="nama" 
+            placeholder="Masukkan nama lengkap Anda" 
+            required
+            autocomplete="name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-id-card label-icon"></i>
+            NIM
+          </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nim" 
+            name="nim" 
+            placeholder="Masukkan NIM Anda" 
+            required
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-graduation-cap label-icon"></i>
+            Program Studi
+          </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="jurusan" 
+            name="jurusan" 
+            placeholder="Masukkan program studi Anda" 
+            required
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-envelope label-icon"></i>
+            Email Aktif
+          </label>
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email" 
+            placeholder="nama@email.com" 
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-file-pdf label-icon"></i>
+            Unggah CV (PDF)
+          </label>
+          <input 
+            type="file" 
+            class="form-control" 
+            id="cv" 
+            name="cv" 
+            accept=".pdf" 
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-check me-2"></i>
+          Daftar Sekarang
+        </button>
+
+        <div class="security-note">
+          <i class="fas fa-shield-alt security-icon"></i>
+          <span>Data Anda aman dan terenkripsi dengan teknologi SSL</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced form interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputs = document.querySelectorAll('.form-control');
+      
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'scale(1.02)';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'scale(1)';
+        });
+        
+        // Real-time validation feedback
+        input.addEventListener('input', function() {
+          if (this.validity.valid) {
+            this.style.borderColor = '#22c55e';
+          } else if (this.value.length > 0) {
+            this.style.borderColor = '#ef4444';
+          } else {
+            this.style.borderColor = '#e5e7eb';
+          }
+        });
+      });
+
+      // Submit button loading state
+      const form = document.querySelector('form');
+      const submitBtn = document.querySelector('.btn-submit');
+      
+      form.addEventListener('submit', function() {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memproses...';
+        submitBtn.disabled = true;
+      });
+    });
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Simulasi submit sukses
+      setTimeout(() => {
+        window.location.href = "sukses.html";
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
